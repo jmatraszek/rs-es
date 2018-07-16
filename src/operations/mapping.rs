@@ -241,7 +241,7 @@ pub mod tests {
             assert!(result_wrapped.is_ok());
 
             let result = result_wrapped.unwrap();
-            assert!(result.created);
+            assert!(result.created.unwrap());
         }
     }
 }

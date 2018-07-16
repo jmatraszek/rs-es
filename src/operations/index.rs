@@ -140,7 +140,7 @@ pub struct IndexResult {
     pub id:       String,
     #[serde(rename="_version")]
     pub version:  u64,
-    pub created:  bool
+    pub created:  Option<bool>
 }
 
 #[cfg(test)]
@@ -164,7 +164,7 @@ pub mod tests {
                 .send();
             println!("TEST RESULT: {:?}", result_wrapped);
             let result = result_wrapped.unwrap();
-            assert_eq!(result.created, true);
+            assert_eq!(result.created, Some(true));
             assert_eq!(result.index, index_name);
             assert_eq!(result.doc_type, "test_type");
             assert!(result.id.len() > 0);
@@ -179,7 +179,7 @@ pub mod tests {
                 .send();
             let result = result_wrapped.unwrap();
 
-            assert_eq!(result.created, true);
+            assert_eq!(result.created, Some(true));
             assert_eq!(result.index, index_name);
             assert_eq!(result.doc_type, "test_type");
             assert_eq!(result.id, "TEST_INDEXING_2");
